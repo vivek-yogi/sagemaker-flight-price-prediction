@@ -252,8 +252,8 @@ preprocessor = Pipeline(steps=[
 ])
 
 # read the training data
-dir_path = r'C:\Users\Admin\Projects\Flight-sagemaker-project\data'
-train = pd.read_csv(os.path.join(dir_path,"train.csv"))
+#dir_path = r'C:\Users\Admin\Projects\Flight-sagemaker-project\data'
+train = pd.read_csv("train.csv")
 X_train = train.drop(columns="price")
 y_train = train.price.copy()
 
@@ -308,7 +308,7 @@ if st.button("Predict"):
 	saved_preprocessor = joblib.load("preprocessor.joblib")
 	x_new_pre = saved_preprocessor.transform(x_new)
 
-	with open(r"C:\Users\Admin\Projects\Flight-sagemaker-project\model\xgboost-model", "rb") as f:
+	with open("xgboost-model", "rb") as f:
 		model = pickle.load(f)
 	x_new_xgb = xgb.DMatrix(x_new_pre)
 	pred = model.predict(x_new_xgb)[0]
